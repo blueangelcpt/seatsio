@@ -1,6 +1,7 @@
 <?php
-App::uses('HttpSocket', 'Network/Http');
-App::import('Vendor', 'seatsio-php', array('file' => 'seatsio-php' . DS . 'src' . DS . 'SeatsioClient.php'));
+App::import('Vendor', 'SeatsioClient', array('file' => 'seatsio-php/src/SeatsioClient.php'));
+App::import('Vendor', 'Autoload', array('file' => 'seatsio-php/vendor/autoload.php'));
+
 class SeatsioComponent extends Component {
 	public $settings = array(
 		'publicKey' => '',
@@ -17,7 +18,7 @@ class SeatsioComponent extends Component {
 		// saving the controller reference for later use
 		$this->controller = $controller;
 		$this->settings = array_merge($this->settings, $settings);
-		$this->client = new SeatsioClient($this->settings['secretKey']);
+		$this->client = new \Seatsio\SeatsioClient($this->settings['secretKey']);
 	}
 
 	public function setEventKey($eventKey) {
