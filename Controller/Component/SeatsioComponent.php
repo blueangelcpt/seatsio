@@ -27,11 +27,13 @@ class SeatsioComponent extends Component {
 
 	public function book($tickets) {
 		$result = $this->client->events->book($this->eventKey, $tickets);
+		$this->log(json_encode($result, true), 'seatsio');
 		return ($result->code == 200) ? true : false;
 	}
 
 	public function release($tickets) {
 		$result = $this->client->events->release($this->eventKey, $tickets);
+		$this->log(json_encode($result, true), 'seatsio');
 		return ($result->code == 200) ? true : false;
 	}
 }
